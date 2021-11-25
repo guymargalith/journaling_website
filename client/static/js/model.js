@@ -252,13 +252,15 @@ async function getPosts(e) {
         console.log(emojiArray);
         Post.drawAll();
         pageNum++
+        if(pageNum > data.totalPages){
+            e.target.style.display = "none";
+            const noMore = document.createElement("p");
+            noMore.textContent = "No more posts to load!";
+            noMore.setAttribute("class", "no-more-msg");
+            document.querySelector("main").append(noMore);
+        };
     } catch(err) {
         console.log(err);
-        e.target.style.display = "none";
-        let noMore = document.createElement("p");
-        noMore.textContent = "No more posts to load!";
-        noMore.setAttribute("class", "no-more-msg")
-        document.querySelector("main").append(noMore);
     }
 }
 
